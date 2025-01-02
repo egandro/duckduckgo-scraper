@@ -13,7 +13,8 @@ class MaxRetriesExceededException(Exception):
 
 def ddgs_text(query, max):
     ddgs = DDGS()
-    res = ddgs.text(keywords=query, region="us-en", backend="api", timelimit="y", max_results=max)
+    # region="us-en", timelimit="y",
+    res = ddgs.text(keywords=query, max_results=max)
     result = []
     if isinstance(res, list) and len(res) > 0:
         result = [
