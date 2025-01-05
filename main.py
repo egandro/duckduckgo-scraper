@@ -25,7 +25,7 @@ def ddgs_text(query, max):
     return result
 
 def scraper(query, max=1):
-    max_retries = 5
+    max_retries = 10
     retry_count = 0
 
     while retry_count < max_retries:
@@ -37,9 +37,9 @@ def scraper(query, max=1):
             if retry_count >= max_retries:
                 raise MaxRetriesExceededException(f"Maximum retries reached: {e}")
             else:
-                sleep_time = random.randint(2, 30)
-                print(f"Caught an exception: {e} - Retrying in {sleep_time} seconds...")
-                time.sleep(sleep_time)
+                sleep_time = random.randint(150, 3000)
+                print(f"Caught an exception: {e} - Retrying in {sleep_time} ms...")
+                time.sleep(sleep_time/1000)
     return result
 
 @app.route('/scrape/<string:query>')
