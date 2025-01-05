@@ -4,6 +4,7 @@ build:
 	docker build -t $(IMAGE) .
 
 run: build
+	docker rm -f $(IMAGE) || true
 	docker run -p 5000:5000 --name $(IMAGE) -it --rm $(IMAGE)
 
 clean:
